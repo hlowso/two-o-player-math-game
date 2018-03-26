@@ -39,18 +39,18 @@ class Game
 	end
 
 	def game_over_sequence()
-		player = self.get_current_player
+		player = get_current_player
 		puts "#{player.name} wins with a score of #{player.current_score}\n"\
-				 "#{self.announce('game over')}\n"\
+				 "#{announce('game over')}\n"\
 				 "Goodbye!"
 	end
 
 	def play()
-		puts self.announce('new turn')
+		puts announce('new turn')
 		question   = Question.new
-		player     = self.get_current_player
+		player     = get_current_player
 		game_over  = false
-		self.toggle_turn_index
+		toggle_turn_index
 
 		correct = question.ask(player)
 		if !correct
@@ -58,13 +58,13 @@ class Game
 
 			if !player.alive?
 				game_over = true
-				self.game_over_sequence
+				game_over_sequence
 			end
 		end
 
 		if !game_over
 			puts "#{@players[0]} vs #{@players[1]}"
-			self.play
+			play
 		end	
 	end
 end
